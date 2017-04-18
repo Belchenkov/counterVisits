@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     // Get IP
     $.ajax({
-        url: 'server/count.php',
+        url: 'server/get_ip.php',
         type: 'GET',
         success: function(location) {
             ip = location;

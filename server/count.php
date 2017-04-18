@@ -1,11 +1,6 @@
 <?php require_once 'connect_db.php'; ?>
 
 
-<?php
-    // Get IP
-    $ip = $_SERVER['REMOTE_ADDR'];
-    echo $ip;
-?>
 
 <?php
     if(!empty($_POST)) {
