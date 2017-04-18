@@ -14,9 +14,9 @@ $(document).ready(function() {
             if (!$.cookie(ip)) {
                 // Set Date
                 var date = new Date();
-                var currentDate = date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + date.getUTCDay() + ' ' + date.getUTCHours() + ':' + date.getUTCMinutes() + ":" + date.getUTCSeconds();
+                var currentDate = date.getUTCFullYear() + '-' + (date.getUTCMonth()+1) + '-' + date.getUTCDate() + ' ' + date.getUTCHours() + ':' + date.getUTCMinutes() + ":" + date.getUTCSeconds();
 
-                //For Minutes 
+                //For Minutes
                 //var minutes = 0.2;
                 //date.setTime(date.getTime() + (minutes * 60 * 1000));
                 //$.cookie(ip, currentDate, { expires: date });
@@ -47,5 +47,5 @@ $(document).ready(function() {
             }
         }
     }); // end ajax()
-    
+
 });
