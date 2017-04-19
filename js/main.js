@@ -11,7 +11,7 @@ $(document).ready(function() {
             console.log(location);
 
             // Check on new User
-            if (!$.cookie(ip)) {
+            if (!getcookie(ip)) {
                 // Set Date
                 var date = new Date();
                 var currentDate = date.getUTCFullYear() + '-' + (date.getUTCMonth()+1) + '-' + date.getUTCDate() + ' ' + date.getUTCHours() + ':' + date.getUTCMinutes() + ":" + date.getUTCSeconds();
@@ -22,7 +22,7 @@ $(document).ready(function() {
                 //$.cookie(ip, currentDate, { expires: date });
 
                 // One Day
-                $.cookie(ip, currentDate, { expires: 1 });
+                setcookie(ip, currentDate, (new Date).getTime() + (1 * 24 * 60 * 60 * 1000));
                 console.log('Новый посетитель!', currentDate);
 
 
@@ -49,3 +49,41 @@ $(document).ready(function() {
     }); // end ajax()
 
 });
+
+function setcookie(name, value, expires, path, domain, secure)
+{
+    document.cookie =    name + "=" + escape(value) +
+                        ((expires) ? "; expires=" + (new Date(expires)) : "") +
+                        ((path) ? "; path=" + path : "") +
+                        ((domain) ? "; domain=" + domain : "") +
+                        ((secure) ? "; secure" : "");
+}
+
+function getcookie(name)
+{
+    var cookie = " " + document.cookie;
+    var search = " " + name + "=";
+    var setStr = null;
+    var offset = 0;
+    var end = 0;
+    
+    if (cookie.length > 0)
+    {
+        offset = cookie.indexOf(search);
+        
+        if (offset != -1)
+        {
+            offset += search.length;
+            end = cookie.indexOf(";", offset)
+            
+            if (end == -1)
+            {
+                end = cookie.length;
+            }
+            
+            setStr = unescape(cookie.substring(offset, end));
+        }
+    }
+    
+    return(setStr);
+}
